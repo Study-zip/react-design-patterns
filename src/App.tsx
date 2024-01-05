@@ -1,22 +1,24 @@
 import SplitScreen from "./components/SplitScreen";
 import "./App.css";
 
-const LeftSideComp = () => {
-  return <h2 style={{ backgroundColor: "crimson" }}>I am Left</h2>;
+interface SideCompProps {
+  title: string;
+}
+
+const LeftSideComp = ({ title }: SideCompProps) => {
+  return <h2 style={{ backgroundColor: "crimson" }}>I am {title}</h2>;
 };
 
-const RightSideComp = () => {
-  return <h2 style={{ backgroundColor: "burlywood" }}>I am Right</h2>;
+const RightSideComp = ({ title }: SideCompProps) => {
+  return <h2 style={{ backgroundColor: "burlywood" }}>I am {title}</h2>;
 };
 
 function App() {
   return (
-    <SplitScreen
-      Left={LeftSideComp}
-      Right={RightSideComp}
-      leftWidth={1}
-      rightWidth={1}
-    />
+    <SplitScreen leftWidth={1} rightWidth={3}>
+      <LeftSideComp title={"Left"} />
+      <RightSideComp title={"Right"} />
+    </SplitScreen>
   );
 }
 

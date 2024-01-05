@@ -6,30 +6,25 @@ const Container = styled.div`
 `;
 
 const Panel = styled.div<{ flex: number }>`
-  flex: ${({flex}) => flex};
+  flex: ${({ flex }) => flex};
 `;
 
 interface SplitScreenProps {
-  Left: React.ComponentType;
-  Right: React.ComponentType;
+  children: [React.ReactElement, React.ReactElement];
   leftWidth: number;
   rightWidth: number;
 }
 
 const SplitScreen = ({
-  Left,
-  Right,
+  children,
   leftWidth = 1,
   rightWidth = 1,
 }: SplitScreenProps) => {
+  const [left, right] = children;
   return (
     <Container>
-      <Panel flex={leftWidth}>
-        <Left />
-      </Panel>
-      <Panel flex={rightWidth}>
-        <Right />
-      </Panel>
+      <Panel flex={leftWidth}>{left}</Panel>
+      <Panel flex={rightWidth}>{right}</Panel>
     </Container>
   );
 };
